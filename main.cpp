@@ -1,31 +1,49 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Triangle.h"
 
 int main() {
-    int one, two, three;
-    cout << "Enter sides of Rectangle (width and height): ";
-    cin >> one >> two;
-    cout << "Enter three sides of Triangle: ";
-    cin >> three;
+   int n;
+    cout << "Enter number of figures: ";
 
-    Rectangle rectangle(one, two);
-    Circle circle(one);
-    Triangle triangle(one, two, three);
+   cin >> n;
 
-    rectangle.display();
-    circle.display();
-    triangle.display();
+    vector<Figure*> figures;
 
-    rectangle.area();
-    circle.area();
-    triangle.area();
+for (int i = 0; i < n; i++) {
+    int type;
+    cout << "Choose Figure, 1 - Rectangle, 2 - Circle, 3 - Triangle: ";
+    cin >>  type;
 
-    rectangle.perimeter();
-    circle.perimeter();
-    triangle.perimeter();
+    if (type == 1) {
+        int a, b;
+        cout << "Enter width and height: ";
+        cin >> a >> b;
+        figures.push_back(new Rectangle(a, b));
+    } else if (type == 2) {
+        int r;
+        cout << "Enter r of Circle ";
+        cin >> r;
+        figures.push_back(new Circle(r));
+    } else if (type == 3) {
+        int a, b, c;
+        cout << "Enter three sides of Triangle: ";
+        cin >> a >> b >> c;
+        figures.push_back(new Triangle(a, b, c));
+
+
+    }
+}
+    cout << "\nFigures Information:\n";
+    for (Figure* fig : figures) {
+        if (fig) {
+            fig->display();
+        }
+    }
+
 
 
 
